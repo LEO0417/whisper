@@ -5,7 +5,7 @@
 Transformers Pipeline 展示脚本
 
 这个脚本展示了多种 Hugging Face Transformers pipeline 的使用方法，
-包括语音识别、问答、文本生成、翻译和会话等任务。
+包括问答、文本生成、翻译和会话等任务。
 """
 
 import os
@@ -16,33 +16,6 @@ import argparse
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from utils import get_device, create_pipeline, print_device_info
-
-def showcase_asr():
-    """展示语音识别 (Automatic Speech Recognition)"""
-    print("\n=== 语音识别示例 ===")
-    
-    # 创建 pipeline
-    pipe = create_pipeline(
-        task="automatic-speech-recognition",
-        model_name="openai/whisper-tiny"  # 使用小模型以加快演示速度
-    )
-    
-    # 请求用户输入
-    audio_file = input("请输入音频文件路径：").strip()
-    
-    if not os.path.exists(audio_file):
-        print(f"错误：文件 '{audio_file}' 不存在")
-        return
-    
-    # 执行识别
-    print("处理中...")
-    result = pipe(audio_file)
-    
-    # 显示结果
-    print("\n识别结果：")
-    print("-" * 50)
-    print(result["text"])
-    print("-" * 50)
 
 def showcase_qa():
     """展示问答系统"""
@@ -164,7 +137,7 @@ def main():
     """主函数"""
     # 解析命令行参数
     parser = argparse.ArgumentParser(description="Transformers Pipeline 展示")
-    parser.add_argument("--task", choices=["asr", "qa", "text", "translation", "conversation", "all"],
+    parser.add_argument("--task", choices=["qa", "text", "translation", "conversation", "all"],
                        help="要展示的任务 (默认：all)")
     args = parser.parse_args()
     
@@ -177,13 +150,11 @@ def main():
     if args.task and args.task != "all":
         tasks = [args.task]
     else:
-        tasks = ["asr", "qa", "text", "translation", "conversation"]
+        tasks = ["qa", "text", "translation", "conversation"]
     
     # 执行展示
     for task in tasks:
-        if task == "asr":
-            showcase_asr()
-        elif task == "qa":
+        if task == "qa":
             showcase_qa()
         elif task == "text":
             showcase_text_generation()

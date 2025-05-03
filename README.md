@@ -4,7 +4,7 @@
 
 ## 项目结构
 
-```
+```text
 transformers-pipeline-practice/
 ├── README.md                 # 项目说明文档
 ├── utils/                    # 工具函数
@@ -20,7 +20,7 @@ transformers-pipeline-practice/
 │   └── conversation/         # 会话任务
 │       └── chatbot.py        # 聊天机器人示例
 ├── examples/                 # 综合示例
-│   └── pipeline_showcase.py  # 多种pipeline展示
+│   └── pipeline_showcase.py  # 多种 pipeline 展示
 └── data/                     # 样本数据
     └── text/                 # 文本样本
 ```
